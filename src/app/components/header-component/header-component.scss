@@ -1,0 +1,23 @@
+.app-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logout-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logout-container img {
+  margin-right: 8px;
+}
+
+.logout-container span {
+  font-weight: 500;
+  color: #555;
+}

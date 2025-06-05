@@ -1,0 +1,11 @@
+<div class="container">
+  <h2 class="mb-4">Carrinho de Compras</h2>
+  <div *ngFor="let item of cartItems" class="card mb-3 p-3">
+    <h5>{{ item.nome }}</h5>
+    <p>Preço: R$ {{ item.preco }}</p>
+    <label>Quantidade:</label>
+    <input type="number" min="1" [(ngModel)]="item.quantity" (change)="updateTotal()" class="form-control w-25 mb-2" />
+    <button class="btn btn-danger" (click)="remove(item)">Remover</button>
+  </div>
+  <h4 class="mt-4">Total: R$ {{ total | number:'1.2-2' }}</h4>
+</div>

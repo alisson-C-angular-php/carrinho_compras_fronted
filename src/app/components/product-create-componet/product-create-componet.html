@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <h2>Cadastro de Produto</h2>
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="mb-3">
+      <label>Nome</label>
+      <input type="text" class="form-control" required [(ngModel)]="product.nome" name="nome">
+    </div>
+
+    <div class="mb-3">
+      <label>Descrição</label>
+      <textarea class="form-control" required [(ngModel)]="product.descricao" name="descricao"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label>Preço</label>
+      <input type="number" class="form-control" required [(ngModel)]="product.preco" name="preco">
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+  </form>
+</div>
+<app-alert-component
+  [message]="alertMessage"
+  [type]="alertType"
+  [show]="showAlert">
+</app-alert-component>

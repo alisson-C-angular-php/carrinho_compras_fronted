@@ -1,0 +1,22 @@
+<div class="card mb-4 shadow-sm">
+  <div class="row g-0">
+    <div class="col-md-4" *ngIf="product?.image">
+      <img [src]="product.image" class="img-fluid rounded-start" alt="Imagem do produto">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h2 class="card-title">{{ product?.nome }}</h2>
+        <p class="card-text text-muted">{{ product?.descricao }}</p>
+        <h5 class="card-text text-primary fw-bold">Preço: R$ {{ product?.preco }}</h5>
+        <button class="btn btn-success mt-3" (click)="addToCart()">Adicionar ao carrinho</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-alert-component
+  [message]="alertMessage"
+  [type]="alertType"
+  [show]="showAlert">
+</app-alert-component>

@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>Lista de Produtos</h2>
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    (ngModelChange)="currentPage = 1"
+    placeholder="Buscar produtos..."
+    class="form-control mb-3"
+  />
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let product of filteredProducts()">
+      <div class="card h-100" (click)="viewDetails(product.id)" style="cursor: pointer;">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.nome }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paginação -->
+  <nav *ngIf="totalPages > 1">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="goToPage(currentPage - 1)">Anterior</a>
+      </li>
+
+      <li
+        class="page-item"
+        *ngFor="let page of [].constructor(totalPages); let i = index"
+        [class.active]="currentPage === i + 1"
+      >
+        <a class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</a>
+      </li>
+
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="goToPage(currentPage + 1)">Próxima</a>
+      </li>
+    </ul>
+  </nav>
+</div>

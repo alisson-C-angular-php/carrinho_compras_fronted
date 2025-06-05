@@ -1,0 +1,31 @@
+<div
+  class="sidebar"
+  [class.expanded]="isExpanded"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+>
+  <button class="toggle-btn" (click)="toggleSidebar()">☰</button>
+
+  <ul *ngIf="isExpanded">
+    <li>
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <i class="fas fa-home"></i> Home
+      </a>
+    </li>
+    <li>
+      <a routerLink="/product/1" routerLinkActive="active">
+        <i class="fas fa-box-open"></i> Produto
+      </a>
+    </li>
+    <li *ngIf="isAdmin">
+      <a routerLink="/cadastro" routerLinkActive="active">
+        <i class="fas fa-user-plus"></i> Cadastro
+      </a>
+    </li>
+    <li>
+      <a routerLink="/cart" routerLinkActive="active">
+        <i class="fas fa-shopping-cart"></i> Carrinho
+      </a>
+    </li>
+  </ul>
+</div>

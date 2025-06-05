@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <h2>Cadastro de Usuário</h2>
+  <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+    
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome</label>
+      <input id="nome" formControlName="nome" type="text" class="form-control" placeholder="Digite seu nome" />
+      <div *ngIf="cadastroForm.get('nome')?.invalid && cadastroForm.get('nome')?.touched" class="text-danger">
+        Nome é obrigatório.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" formControlName="email" type="email" class="form-control" placeholder="Digite seu email" />
+      <div *ngIf="cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched" class="text-danger">
+        Email inválido.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="senha" class="form-label">Senha</label>
+      <input id="senha" formControlName="senha" type="password" class="form-control" placeholder="Digite sua senha" />
+      <div *ngIf="cadastroForm.get('senha')?.invalid && cadastroForm.get('senha')?.touched" class="text-danger">
+        Senha é obrigatória.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="funcao" class="form-label">Função</label>
+      <select id="funcao" formControlName="funcao" class="form-select">
+        <option value="">Selecione a função</option>
+        <option value="Administrador">Administrador</option>
+        <option value="Usuario">Usuário</option>
+      </select>
+      <div *ngIf="cadastroForm.get('funcao')?.invalid && cadastroForm.get('funcao')?.touched" class="text-danger">
+        Função é obrigatória.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="cadastroForm.invalid">Cadastrar Usuário</button>
+  </form>
+</div>
