@@ -13,13 +13,18 @@ import { RouterModule } from '@angular/router';
 export class SidebarComponent {
   isExpanded = false;
   isAdmin = false;
+  loggedUser: any;
 
   constructor() {
-    const userData = localStorage.getItem('user');
+    const userData = sessionStorage.getItem('user');
     if (userData) {
       const user = JSON.parse(userData);
-      this.isAdmin = user.role === 'administrador'; // ou 'admin'
+      this.isAdmin = user.user.funcao === 'Administrador'; 
     }
+  }
+
+  ngOnInit(){
+    this.getLoggedUser()
   }
 
   @HostListener('document:click', ['$event'])
@@ -40,5 +45,13 @@ export class SidebarComponent {
 
   onMouseLeave() {
     this.isExpanded = false;
+  }
+
+    getLoggedUser() {
+    const storedUser = sessionStorage.getItem('user');
+    if (storedUser) {
+      const userData = JSON.parse(storedUser);
+      this.loggedUser = userData.user.email;
+    }
   }
 }

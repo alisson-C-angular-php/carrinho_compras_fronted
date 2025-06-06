@@ -11,18 +11,29 @@ export class HttpService {
   constructor(private http: HttpClient) {}
 
   public getHeaders(): HttpHeaders {
-    const token = sessionStorage.getItem("token_acess") ?? "";
+  let accessToken = "";
+  let parsedData: any = null;
 
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
+  const token = sessionStorage.getItem("user");
 
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
-    }
-
-    return headers;
+  try {
+    parsedData = token ? JSON.parse(token) : null;
+    accessToken = parsedData?.token_acess ?? "";
+  } catch (error) {
+    console.warn("Token mal formatado no sessionStorage:", error);
   }
+
+  let headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
+
+  if (accessToken) {
+    headers = headers.set('Authorization', `Bearer ${accessToken}`);
+  }
+
+  return headers;
+}
+
 
    get(req: string, options?: any) {
     return  this.http

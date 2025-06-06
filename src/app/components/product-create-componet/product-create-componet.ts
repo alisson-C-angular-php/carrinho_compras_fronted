@@ -14,8 +14,7 @@ import { AlertComponent } from '../alert-component/alert-component';
   styleUrls: ['./product-create-componet.scss']
 })
 export class ProductCreateComponet {
-  user = JSON.parse(sessionStorage.getItem('user') || '{}');
-  userId = Number(this.user?.user?.id);
+  userId: number = 0;
 
   product: Product = {
     id: 0,
@@ -29,11 +28,32 @@ export class ProductCreateComponet {
   alertMessage = '';
   alertType: 'success' | 'danger' | 'warning' | 'info' = 'info';
   showAlert = false;
-
+  combo:any[] = []
   constructor(
     private productService: ProductService,
     private router: Router
   ) {}
+
+  ngOnInit(){
+    this.getComboUser();
+  }
+
+    getComboUser() {
+  const storedUser = sessionStorage.getItem("user");
+
+  if (storedUser) {
+    const userData = JSON.parse(storedUser);
+
+    if (userData.combo && Array.isArray(userData.combo)) {
+      this.combo = [...userData.combo]; 
+    } else {
+      console.warn('Campo "combo" não encontrado ou inválido.');
+    }
+  } else {
+    console.warn('Nenhum dado de usuário encontrado no sessionStorage.');
+  }
+}
+
 
   onSubmit(): void {
     this.productService.addProduct(this.product).then(() => {
@@ -41,7 +61,7 @@ export class ProductCreateComponet {
       setTimeout(() => this.router.navigate(['/produtos']), 2000);
     }).catch((error: any) => {
       console.error(error);
-      this.showCustomAlert('Erro ao cadastrar produto.', 'danger');
+      this.showCustomAlert('Erro ao cadastrar produto.' + error.error.message, 'danger');
     });
   }
 

@@ -41,3 +41,9 @@
     <button type="submit" class="btn btn-primary" [disabled]="cadastroForm.invalid">Cadastrar Usuário</button>
   </form>
 </div>
+
+<app-alert-component
+  [message]="alertMessage"
+  [type]="alertType"
+  [show]="showAlert">
+</app-alert-component>

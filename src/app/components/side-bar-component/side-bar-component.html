@@ -12,20 +12,34 @@
         <i class="fas fa-home"></i> Home
       </a>
     </li>
-    <li>
-      <a routerLink="/product/1" routerLinkActive="active">
-        <i class="fas fa-box-open"></i> Produto
-      </a>
-    </li>
+
     <li *ngIf="isAdmin">
       <a routerLink="/cadastro" routerLinkActive="active">
         <i class="fas fa-user-plus"></i> Cadastro
       </a>
     </li>
+
     <li>
       <a routerLink="/cart" routerLinkActive="active">
         <i class="fas fa-shopping-cart"></i> Carrinho
       </a>
     </li>
   </ul>
+
+  <!-- Novo visual para usuário logado -->
+  <div class="user-info" *ngIf="loggedUser; else unknownUser">
+    <div class="user-avatar">
+      <i class="fas fa-user-circle"></i>
+    </div>
+    <div class="user-details">
+      <span>{{ loggedUser }}</span>
+      <small class="user-role" *ngIf="isAdmin">(Administrador)</small>
+    </div>
+  </div>
+
+  <ng-template #unknownUser>
+    <div class="user-info">
+      <i class="fas fa-user-slash"></i> <span>Usuário desconhecido</span>
+    </div>
+  </ng-template>
 </div>

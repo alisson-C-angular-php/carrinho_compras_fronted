@@ -3,18 +3,19 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpService } from '../../services/http.service';
+import { AlertComponent } from '../alert-component/alert-component';
 
 @Component({
   selector: 'app-cadastro-usuario-component',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule,AlertComponent],
   templateUrl: './cadastro-usuario-component.html',
   styleUrls: ['./cadastro-usuario-component.scss']
 })
 export class CadastroUsuarioComponent {
   cadastroForm: FormGroup;
   alertMessage = '';
-  alertType:  'success' | 'danger' | 'warning' | 'info' = 'info';
+  alertType: 'success' | 'danger' | 'warning' | 'info' = 'info';
   showAlert = false;
   constructor(private http: HttpService, private router: Router, private fb: FormBuilder) {
     this.cadastroForm = this.fb.group({
@@ -25,6 +26,10 @@ export class CadastroUsuarioComponent {
     });
   }
 
+
+
+
+
   onSubmit(): void {
     if (this.cadastroForm.valid) {
       const novoUsuario = this.cadastroForm.value;
@@ -32,12 +37,16 @@ export class CadastroUsuarioComponent {
       this.http.post('user', novoUsuario)
         .then(() => {
           this.showCustomAlert('Usuário cadastrado com sucesso!', 'success');
-          this.router.navigate(['/']);
+
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 2000); 
         })
         .catch((err) => {
-          console.error(err);
-          this.showCustomAlert('Erro ao cadastrar usuário.', 'danger');
+          const message = err?.error?.message || 'Erro ao cadastrar usuário.';
+          this.showCustomAlert(message, 'danger');
         });
+
     } else {
       this.cadastroForm.markAllAsTouched();
       this.showCustomAlert('Preencha todos os campos corretamente.', 'warning');
@@ -51,7 +60,7 @@ export class CadastroUsuarioComponent {
 
     setTimeout(() => {
       this.showAlert = false;
-    }, 5000); 
+    }, 5000);
   }
 }
 

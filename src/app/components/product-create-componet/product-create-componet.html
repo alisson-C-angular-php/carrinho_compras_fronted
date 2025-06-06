@@ -17,12 +17,21 @@
     </div>
 
 
+    <div class="mb-3">
+      <label for="usuarios" class="form-label">Cadastrar produto para usuário</label>
+      <select id="usuarios" class="form-select" [(ngModel)]="product.usuarioId" name="usuarioId" required>
+        <option *ngFor="let user of combo" [value]="user.id">
+          {{ user.nome }}
+        </option>
+      </select>
+    </div>
+
+
+
+
 
     <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
   </form>
 </div>
-<app-alert-component
-  [message]="alertMessage"
-  [type]="alertType"
-  [show]="showAlert">
+<app-alert-component [message]="alertMessage" [type]="alertType" [show]="showAlert">
 </app-alert-component>
