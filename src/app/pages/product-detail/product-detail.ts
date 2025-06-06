@@ -5,15 +5,15 @@ import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AlertComponent } from '../alert-component/alert-component';
+import { AlertComponent } from '../../components/alert-component/alert-component';
 
 @Component({
   standalone: true,
   imports: [CommonModule, FormsModule, AlertComponent],
   selector: 'app-product-detail',
-  templateUrl: './product-detail.component.html'
+  templateUrl: './product-detail.html'
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetail implements OnInit {
   product: any;
   alertMessage = '';
   alertType: 'success' | 'danger' | 'warning' | 'info' = 'info';

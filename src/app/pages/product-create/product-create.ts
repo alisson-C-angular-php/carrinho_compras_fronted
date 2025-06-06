@@ -4,16 +4,16 @@ import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AlertComponent } from '../alert-component/alert-component';
+import { AlertComponent } from '../../components/alert-component/alert-component';
 
 @Component({
-  selector: 'app-product-create-componet',
+  selector: 'app-product-create',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, AlertComponent],
-  templateUrl: './product-create-componet.html',
-  styleUrls: ['./product-create-componet.scss']
+  templateUrl: './product-create.html',
+  styleUrls: ['./product-create.scss']
 })
-export class ProductCreateComponet {
+export class ProductCreate {
   userId: number = 0;
 
   product: Product = {

@@ -10,9 +10,9 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule],
 
   selector: 'app-product-list',
-  templateUrl: './product-list.component.html'
+  templateUrl: './product-list.html'
 })
-export class ProductListComponent implements OnInit {
+export class ProductList implements OnInit {
   products: Product[] = [];
   searchTerm: string = '';
 

@@ -3,20 +3,22 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpService } from '../../services/http.service';
-import { AlertComponent } from '../alert-component/alert-component';
+import { AlertComponent } from '../../components/alert-component/alert-component';
 
 @Component({
-  selector: 'app-cadastro-usuario-component',
+  selector: 'app-cadastro-usuario',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, RouterModule,AlertComponent],
-  templateUrl: './cadastro-usuario-component.html',
-  styleUrls: ['./cadastro-usuario-component.scss']
+  templateUrl: './cadastro-usuario.html',
+  styleUrls: ['./cadastro-usuario.scss']
 })
-export class CadastroUsuarioComponent {
+export class CadastroUsuario {
   cadastroForm: FormGroup;
   alertMessage = '';
   alertType: 'success' | 'danger' | 'warning' | 'info' = 'info';
   showAlert = false;
+
+
   constructor(private http: HttpService, private router: Router, private fb: FormBuilder) {
     this.cadastroForm = this.fb.group({
       nome: ['', Validators.required],

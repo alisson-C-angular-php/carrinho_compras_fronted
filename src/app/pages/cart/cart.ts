@@ -9,9 +9,9 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [CommonModule, FormsModule],
   selector: 'app-cart',
-  templateUrl: './cart.component.html'
+  templateUrl: './cart.html'
 })
-export class CartComponent implements OnInit {
+export class Cart implements OnInit {
   cartItems: Product[] = [];
   total: number = 0;
   private subscription!: Subscription;

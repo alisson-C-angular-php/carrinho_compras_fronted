@@ -7,12 +7,12 @@ import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login-component.html',
-  styleUrl: './login-component.scss',
+  templateUrl: './login.html',
+  styleUrl: './login.scss',
   standalone: true,
   imports: [ReactiveFormsModule,CommonModule,RouterModule],
 })
-export class LoginComponent {
+export class Login {
   loginForm: FormGroup;
 
   constructor(

@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CartComponent } from './components/cart-component/cart.component';
-import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-import { LoginComponent } from './components/login-component/login-component';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { ProductCreateComponet } from './components/product-create-componet/product-create-componet';
+import { Login } from './pages/login/login';
 import { AuthGuard } from './services/auth-guard';
-import { CadastroUsuarioComponent } from './components/cadastro-usuario-component/cadastro-usuario-component';
+import { CadastroUsuario } from './pages/cadastro-usuario/cadastro-usuario';
+import { ProductCreate } from './pages/product-create/product-create';
+import { ProductList } from './pages/product-list/product-list';
+import { ProductDetail } from './pages/product-detail/product-detail';
+import { Cart } from './pages/cart/cart';
 
 
 export const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'home', component: ProductListComponent, canActivate: [AuthGuard] },
-  { path: 'cadastrousuario', component: CadastroUsuarioComponent },
-  { path: 'cadastro', component: ProductCreateComponet, canActivate: [AuthGuard] },
-  { path: 'product/:id', component: ProductDetailComponent, canActivate: [AuthGuard] },
-  { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
+  { path: '', component: Login },
+  { path: 'home', component: ProductList, canActivate: [AuthGuard] },
+  { path: 'cadastrousuario', component: CadastroUsuario },
+  { path: 'cadastro', component: ProductCreate, canActivate: [AuthGuard] },
+  { path: 'product/:id', component: ProductDetail, canActivate: [AuthGuard] },
+  { path: 'cart', component: Cart, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

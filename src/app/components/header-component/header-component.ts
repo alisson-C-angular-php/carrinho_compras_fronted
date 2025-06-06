@@ -23,7 +23,6 @@ export class HeaderComponent {
     if (storedUser) {
       const userData = JSON.parse(storedUser);
       this.loggedUser = userData.user.email;
-      console.log("USUARIO LOGADO: ",this.loggedUser)
     }
   }
 }
