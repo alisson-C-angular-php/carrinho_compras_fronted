@@ -1,6 +1,6 @@
 # Sistema de Cadastro de Produtos com Autenticação
 
-Este projeto é uma aplicação Angular com integração ao Ionic e backend via API REST. Ele permite o cadastro de produtos e a associação de usuários via `combo` (lista de usuários), com controle de autenticação e exibição dinâmica dos dados conforme o usuário logado.
+Este projeto é uma aplicação Angular com integração ao nest  via API REST. Ele permite o cadastro de produtos e a associação de usuários via `combo` (lista de usuários), com controle de autenticação e exibição dinâmica dos dados conforme o usuário logado.
 
 ## 🚀 Funcionalidades
 
