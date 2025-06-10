@@ -5,11 +5,15 @@ import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertComponent } from '../../components/alert-component/alert-component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-product-create',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, AlertComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, AlertComponent,  NgxMaskDirective,
+    NgxMaskPipe 
+  ],
+  providers: [provideNgxMask()], 
   templateUrl: './product-create.html',
   styleUrls: ['./product-create.scss']
 })

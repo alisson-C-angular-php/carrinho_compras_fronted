@@ -11,10 +11,10 @@
       <textarea class="form-control" required [(ngModel)]="product.descricao" name="descricao"></textarea>
     </div>
 
-    <div class="mb-3">
-      <label>Preço</label>
-      <input type="number" class="form-control" required [(ngModel)]="product.preco" name="preco">
-    </div>
+
+    <input type="text" class="form-control" mask="separator.2" thousandSeparator="." decimalMarker=","
+      inputMode="decimal" pattern="^\d{1,10}(,\d{0,2})?$" maxLength="15" required [(ngModel)]="product.preco"
+      name="preco" />
 
 
     <div class="mb-3">
