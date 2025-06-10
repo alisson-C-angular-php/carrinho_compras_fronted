@@ -1,59 +1,138 @@
-# Produtos
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.0.
 
-## Development server
+# 🛒 Sistema de Cadastro de Produtos com Autenticação
 
-To start a local development server, run:
+Este projeto é uma aplicação web desenvolvida com **Angular 20**, integrada a uma API REST criada com **NestJS**. O sistema permite autenticação via **JWT**, cadastro de produtos, associação dinâmica com usuários através de um **combo selector**, e exibição de alertas personalizados conforme ações do usuário.
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🚀 Funcionalidades
 
-## Code scaffolding
+* ✅ Login de usuários com autenticação JWT
+* 🔐 Controle de níveis de acesso
+* 👤 Exibição dos dados do usuário logado no cabeçalho
+* 🔄 Combo dinâmico de usuários para associação nos cadastros
+* 📝 Cadastro de produtos com vínculo ao `usuarioId`
+* ⚠️ Alertas customizados de sucesso ou erro
+* 🚪 Logout com limpeza automática da sessão
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 🧰 Tecnologias Utilizadas
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+| Camada          | Tecnologia              |
+| --------------- | ----------------------- |
+| Frontend        | Angular 20 + TypeScript |
+| Estilização     | Bootstrap               |
+| Backend (API)   | NestJS (via REST)       |
+| Autenticação    | JWT                     |
+| Armazenamento   | Session Storage         |
+| Containerização | Docker + Docker Compose |
 
-```bash
-ng generate --help
-```
+---
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 📁 Estrutura do Projeto
 
 ```bash
-ng test
+src/
+├── app/
+│   ├── components/
+│   │   ├── alert/
+│   │   ├── header/
+│   │   ├── sidebar/
+│   ├── pages/
+│   │   ├── login/
+│   │   ├── cadastro-usuario/
+│   │   ├── product-list/
+│   │   ├── product-detail/
+│   ├── services/
+│   │   ├── auth.service.ts
+│   │   ├── product.service.ts
+│   │   ├── http.service.ts
+│   │   ├── cart.service.ts
+│   │   └── auth.guard.ts
+├── assets/
+├── environments/
+├── index.html
+└── main.ts
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 💾 Requisitos
+
+* Node.js `v18+`
+* Angular CLI
+
+  ```bash
+  npm install -g @angular/cli
+  ```
+* Docker & Docker Compose
+
+---
+
+## 📦 Como Rodar o Projeto
+
+### ✅ Executando com Docker
+
+Certifique-se de que o Docker está instalado corretamente.
 
 ```bash
-ng e2e
+docker-compose build
+docker-compose up
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### 🧪 Executando Manualmente (sem Docker)
 
-## Additional Resources
+1. Clone o repositório:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+   ```bash
+   https://github.com/alisson-C-angular-php/carrinho_compras_frontend.git
+   cd carrinho_compras_frontend
+   ```
+
+2. Instale as dependências:
+
+   ```bash
+   npm install
+   ```
+
+3. Execute a aplicação:
+
+   ```bash
+   ng serve
+   ```
+
+---
+
+## 🔐 Estrutura de Autenticação
+
+A autenticação é baseada em token JWT armazenado no `sessionStorage`. Exemplo de estrutura retornada pela API após login:
+
+```json
+{
+  "message": "Login efetuado com sucesso",
+  "user": {
+    "id": 1,
+    "email": "admin@email.com",
+    "funcao": "Administrador"
+  },
+  "combo": [
+    { "id": 1, "nome": "admin" },
+    { "id": 2, "nome": "colaborador" }
+  ],
+  "token_acess": "eyJhbGciOiJIUzI1..."
+}
+```
+
+---
+
+## 📌 Observações Importantes
+
+* Os produtos são vinculados ao `usuarioId` escolhido no combo após o login.
+* Apenas usuários autenticados podem acessar rotas protegidas.
+* Alertas exibem mensagens de sucesso ou erro baseadas nas ações.
+* Os dados são limpos do `sessionStorage` no logout.
+
+---
+
